@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SignUpPage from './SignUpPage';
 import ProductUpload from './ProductUpload';
+import NavbarTop from '../HomepageComponets/NavbarTopComponents';
+import CategoryDropdown from '../HomepageComponets/CatergoryDropdown';
+
 
 function LoginPage() {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -29,7 +32,12 @@ function LoginPage() {
     <>
     <div className="login-page">
       {isLoggedIn ? (
+        
+      <>
+        <NavbarTop />
+        <CategoryDropdown />
         <ProductUpload/>
+      </>
       ) : (
         <form>
           <div className="form-group">
@@ -55,6 +63,7 @@ function LoginPage() {
           </button>
         </form>
       )}
+      
     </div>
     
     </>
