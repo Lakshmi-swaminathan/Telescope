@@ -6,6 +6,12 @@ import  LoginPage from './components/loginPage.jsx';
 import  SignUpPage from './components/SignUpPage.jsx';
 import { BrowserRouter as Router, Route, Link, Routes, useLocation } from 'react-router-dom';
 
+import Category from './HomepageComponets/CatergoryDropdown';
+import './HomepageComponets/Drop.css'
+import NavbarTop from './HomepageComponets/NavbarTopComponents';
+
+
+
 function App() {
   const [count, setCount] = useState(0)
   const location = useLocation();
@@ -13,28 +19,6 @@ function App() {
 
   return (
     <>
-      {/* <LoginPage/> */}
-      {/* <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/LoginPage">Go to Login Page</Link>
-            </li>
-            <li>
-              <Link to="/SignUpPage">Go to SignUp Page</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route path="/LoginPage">
-            <LoginPage/>
-          </Route>
-          <Route path="/SignUpPage">
-            <SignUpPage />
-          </Route>
-        </Switch>  */}
         <div>
         {location.pathname !== '/signup' && location.pathname !== '/login' && (
         <nav>
