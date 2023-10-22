@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SignUpPage from './SignUpPage';
+import ProductUpload from './ProductUpload';
 
 function LoginPage() {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -17,6 +18,7 @@ function LoginPage() {
   const handleLogin = () => {
     // Add your authentication logic here (e.g., validate username and password)
     if (formData.username === 'exampleUser' && formData.password === 'password123') {
+      alert('You\'re logged in!');
       setIsLoggedIn(true);
     } else {
       alert('Login failed. Please check your username and password.');
@@ -26,9 +28,8 @@ function LoginPage() {
   return (
     <>
     <div className="login-page">
-      <h2>Login</h2>
       {isLoggedIn ? (
-        <p>You are logged in!</p>
+        <ProductUpload/>
       ) : (
         <form>
           <div className="form-group">
