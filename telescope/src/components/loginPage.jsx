@@ -4,6 +4,8 @@ import SignUpPage from './SignUpPage';
 import ProductUpload from './ProductUpload';
 import NavbarTop from '../HomepageComponets/NavbarTopComponents';
 import CategoryDropdown from '../HomepageComponets/CatergoryDropdown';
+import HomePage from './HomePage';
+import './Style/HomePage.css';
 
 
 function LoginPage() {
@@ -36,6 +38,7 @@ function LoginPage() {
       <>
         <NavbarTop />
         <CategoryDropdown />
+        <HomePage/>
         <ProductUpload/>
       </>
       ) : (
@@ -62,10 +65,8 @@ function LoginPage() {
             Login
           </button>
         </form>
-      )}
-      
+      )}   
     </div>
-    
     </>
   );
 }

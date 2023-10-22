@@ -6,7 +6,7 @@ const CategoryDropdown = () => {
   const categories = [
    
     {
-        title: 'OLX Autos (Cars)',
+        title: 'Properties LookUp',
         subcategories: [
           'Properties',
           'For Sale: Houses & Apartments',
