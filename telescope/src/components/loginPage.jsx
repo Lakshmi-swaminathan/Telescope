@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import SignUpPage from './SignUpPage';
 
 function LoginPage() {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -22,6 +24,7 @@ function LoginPage() {
   };
 
   return (
+    <>
     <div className="login-page">
       <h2>Login</h2>
       {isLoggedIn ? (
@@ -52,6 +55,8 @@ function LoginPage() {
         </form>
       )}
     </div>
+    
+    </>
   );
 }
 
