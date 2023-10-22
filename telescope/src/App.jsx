@@ -1,9 +1,12 @@
 import { useState } from 'react'
+// import drop from '.NavbarComponents/Categorydropdown.js'
+// import drop from '.HomepageComponents/Drop.jsx'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import  LoginPage from './components/loginPage.jsx';
 import  SignUpPage from './components/SignUpPage.jsx';
+import HomePage from './components/HomePage.jsx';
 import { BrowserRouter as Router, Route, Link, Routes, useLocation } from 'react-router-dom';
 
 function App() {
@@ -39,6 +42,9 @@ function App() {
         {location.pathname !== '/signup' && location.pathname !== '/login' && (
         <nav>
           <ul>
+            <li>
+            <drop/>
+            </li>
             <li>
               <Link to="/signup">Sign Up</Link>
             </li>

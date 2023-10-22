@@ -4,6 +4,7 @@ import SignUpPage from './SignUpPage';
 import ProductUpload from './ProductUpload';
 import Drop from '../HomepageComponets/Drop'
 import '../HomepageComponets/Drop.css'
+import HomePage from '../components/HomePage.jsx'
 
 function LoginPage() {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -34,6 +35,7 @@ function LoginPage() {
         
       <>
         <Drop></Drop>
+        <HomePage/>
         <ProductUpload/>
       </>
       ) : (
