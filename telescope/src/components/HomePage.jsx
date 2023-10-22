@@ -13,6 +13,7 @@ const items = [
         price: '$300',
         condition: 'New',
         tags: ['Music', 'Instrument', 'String'],
+        place: 'Fort Wayne',
         image: guitar,
     },
     {
@@ -20,6 +21,7 @@ const items = [
         price: '$15',
         condition: 'Used',
         tags: ['Rain', 'Accessories'],
+        place: 'Fort Wayne',
         image: umbrella,
     },
     {
@@ -27,6 +29,7 @@ const items = [
         price: '$50',
         condition: 'New',
         tags: ['Fashion', 'Eyewear'],
+        place: 'Fort Wayne',
         image: shades,
     },
     {
@@ -34,13 +37,15 @@ const items = [
         price: '$150',
         condition: 'Used',
         tags: ['Furniture', 'Comfort'],
+        place: 'Fort Wayne',
         image: chair,
     },
     {
-        name: 'Coffee Table',
+        name: 'Study Table',
         price: '$80',
         condition: 'Used',
         tags: ['Furniture', 'Living Room'],
+        place: 'Fort Wayne',
         image: table,
     },
 ];
@@ -57,7 +62,7 @@ const HomePage = () => {
                         <h3>{item.name}</h3>
                         <p>Price: {item.price}</p>
                         <p>Condition: {item.condition}</p>
-                        <p>Tags: {item.tags.join(', ')}</p>
+                        <p>Place: {item.place}</p>
                     </div>
                 </div>
             ))}
