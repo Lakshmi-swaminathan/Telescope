@@ -46,10 +46,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import Product from './components/Product.jsx';
-import ShoppingCart from './components/ShoppingCart.jsx';
+import { ShoppingCart} from './components/ShoppingCart.jsx';
+//import ShoppingCart from './components/ShoppingCart.jsx';
 import CheckoutDetails from './components/CheckoutDetails.jsx';
 import OrderComplete from './components/OrderComplete.jsx';
-import Cart from './components/Cart.jsx';
 
 const Home = ({ products, onAddToCart  }) => (
   <div>
@@ -64,7 +64,6 @@ const Home = ({ products, onAddToCart  }) => (
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]); 
 
   useEffect(() => {
     // Fetch products from your server or API
@@ -80,22 +79,25 @@ const App = () => {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (product) => {
-    // Update the cartItems state based on the previous state
-    setCartItems((prevCartItems) => {
-      // Check if the product is already in the cart
-      const existingProduct = prevCartItems.find((item) => item.imageUrl === product.imageUrl);
+  const [cart, setCart] = useState([]);
+  const fetchCart = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/cart/getCart');
+      setCart(response.data);
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    }
+  };
   
-      if (existingProduct) {
-        // If the product is already in the cart, update its quantity
-        return prevCartItems.map((item) =>
-          item.imageUrl === product.imageUrl ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        // If the product is not in the cart, add it with quantity 1
-        return [...prevCartItems, { ...product, quantity: 1 }];
-      }
-    });
+  const handleAddToCart = async (product) => {
+    try {
+      console.log('product._id '+product._id)
+      const response = await axios.post('http://127.0.0.1:8080/api/cart/add-to-cart', { productIds: [product._id] });
+      fetchCart(); // Call fetchCart to update the cart after adding a product
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
   };
 
   return (
@@ -121,8 +123,6 @@ const App = () => {
           <Route path="/order-complete" element={<OrderComplete />} />
         </Routes>
 
-        {/* Render the Cart component with the current cartItems */}
-        <Cart cart={cartItems} />
       </div>
     </Router>
   );

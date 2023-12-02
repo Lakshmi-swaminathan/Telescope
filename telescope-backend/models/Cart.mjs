@@ -1,11 +1,8 @@
-// models/Cart.js
+// models/Cart.mjs
 import mongoose from 'mongoose';
 
 const cartItemSchema = new mongoose.Schema({
-  productId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product',
-  }
+  productIds: [String],
 });
 
 const CartItem = mongoose.model('CartItem', cartItemSchema);
