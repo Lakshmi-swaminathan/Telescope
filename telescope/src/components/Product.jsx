@@ -22,13 +22,14 @@ const Product = ({ product, onAddToCart, cart, onRemoveFromCart }) => {
       onAddToCart(product);
     }
   };
-
+  const imageVar = `https://drive.google.com/uc?id=${product.imageUrl}`
   return (
     <div>
       <h2>{product.name}</h2>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
-      <img src={product.imageUrl} alt={product.name} style={{ width: '100px', height: '100px' }} />
+      {/* <img src={product.imageUrl} alt={product.name} style={{ width: '100px', height: '100px' }} /> */}
+      <img src={imageVar} alt={product.name} style={{ width: '100px', height: '100px' }} />
       <button onClick={handleButtonClick}>
         {isProductInCart ? 'Remove from Cart' : 'Add to Cart'}
       </button>
