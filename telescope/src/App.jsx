@@ -50,13 +50,20 @@ import { ShoppingCart} from './components/ShoppingCart.jsx';
 //import ShoppingCart from './components/ShoppingCart.jsx';
 import CheckoutDetails from './components/CheckoutDetails.jsx';
 import OrderComplete from './components/OrderComplete.jsx';
+import { toast } from 'react-toastify'; // Import toast from react-toastify
 
-const Home = ({ products, onAddToCart  }) => (
+const Home = ({ products, onAddToCart, cart, onRemoveFromCart }) => (
   <div>
     <h2>Products</h2>
     <div>
       {products.map((product) => (
-        <Product key={product._id} product={product} onAddToCart={onAddToCart}/>
+        <Product
+          key={product._id}
+          product={product}
+          onAddToCart={onAddToCart}
+          cart={cart}
+          onRemoveFromCart={onRemoveFromCart}
+        />
       ))}
     </div>
   </div>
@@ -79,6 +86,7 @@ const App = () => {
     try {
       const response = await axios.get('http://localhost:8080/api/cart/getCart');
       setCart(response.data);
+      console.log('Cart data '+response.data);
     } catch (error) {
       console.error('Error fetching cart:', error);
     }
@@ -100,6 +108,18 @@ const App = () => {
       console.error('Error adding to cart:', error);
     }
   };
+
+  const handleRemoveFromCart = async (productId) => {
+    try {
+      const response = await axios.delete(`http://127.0.0.1:8080/api/cart/remove-from-cart/${productId}`);
+      console.log('remove-from-cart ', response.data);
+      fetchCart();
+      toast.success('Cart item deleted successfully');
+    } catch (error) {
+      console.error('Error removing from cart:', error);
+      toast.error('Failed to delete cart item');
+    }
+  };  
 
   return (
     <Router>
@@ -125,8 +145,8 @@ const App = () => {
         <hr />
 
         <Routes>
-          <Route path="/" element={<Home products={products} onAddToCart={handleAddToCart} />} />
-          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/" element={<Home products={products} onAddToCart={handleAddToCart} cart={cart} onRemoveFromCart={handleRemoveFromCart}/>} />
+          <Route path="/cart" element={<ShoppingCart handleRemoveFromCart={handleRemoveFromCart}/>} />
           <Route path="/checkout" element={<CheckoutDetails />} />
           <Route path="/order-complete" element={<OrderComplete />} />
         </Routes>

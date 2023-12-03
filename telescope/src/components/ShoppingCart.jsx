@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
 import './Style/ShoppingCartStyle.css';
+import { toast } from 'react-toastify'; // Import toast from react-toastify
 
-const ShoppingCart = () => {
+const ShoppingCart = ({handleRemoveFromCart}) => {
   const [cart, setCart] = useState([]);
 
   const fetchCart = async () => {
@@ -16,19 +18,17 @@ const ShoppingCart = () => {
     }
   };
 
-  const handleAddToCart = async (product) => {
+  const handleRemoveFromCart1 = async (productId) => {
     try {
-      console.log('product._id ' + product._id);
-      const response = await axios.post('http://127.0.0.1:8080/api/cart/add-to-cart', {
-        productIds: [product._id],
-      });
-      fetchCart(); // Call fetchCart to update the cart after adding a product
-      console.log(response.data);
+      const response = await axios.delete(`http://127.0.0.1:8080/api/cart/remove-from-cart/${productId}`);
+      console.log('remove-from-cart ', response.data);
+      fetchCart();
+      toast.success('Cart item deleted successfully');
     } catch (error) {
-      console.error('Error adding to cart:', error);
+      console.error('Error removing from cart:', error);
+      toast.error('Failed to delete cart item');
     }
-  };
-
+  };  
   useEffect(() => {
     fetchCart();
   }, []);
@@ -52,6 +52,9 @@ const ShoppingCart = () => {
                 <p>{item.description}</p>
                 <p>Price: ${item.price}</p>
               </div>
+            </div>
+            <div className="delete-icon" onClick={() => handleRemoveFromCart1(item._id)}>
+              <img src="https://cdn-icons-png.flaticon.com/512/542/542724.png" alt="Trash" className="trash-icon" />
             </div>
           </li>
         ))}

@@ -45,4 +45,66 @@
   .checkout-button:hover {
     background-color: #4562a0;
   }
+
+  /* ShoppingCart.css */
+.shopping-cart-container {
+  margin: 20px;
+}
+
+.cart-items {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-item {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  position: relative; /* Added for positioning the delete icon */
+}
+
+.item-details {
+  display: flex;
+  align-items: center;
+}
+
+.item-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.delete-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.trash-icon {
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
+}
+
+.checkout-link {
+  text-decoration: none;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.checkout-button {
+  background-color: #0b110c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.checkout-button:hover {
+  background-color: #4562a0;
+}
+
   

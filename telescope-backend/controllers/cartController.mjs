@@ -3,6 +3,7 @@ import CartItem from '../models/Cart.mjs';
 import mongoose from 'mongoose';
 import Product from '../models/Product.mjs'; 
 
+
 // Add item to cart
 const addToCart = async (req, res) => {
   try {
@@ -13,8 +14,19 @@ const addToCart = async (req, res) => {
       return res.status(400).json({ error: 'Invalid product IDs' });
     }
 
-    const cartItem = await CartItem.create({ productIds });
-    res.json(cartItem);
+    // Check if there's an existing cart item for the user
+    const existingCartItem = await CartItem.findOne();
+
+    if (existingCartItem) {
+      // If cart item exists, append productIds to the existing list
+      existingCartItem.productIds = [...existingCartItem.productIds, ...productIds];
+      await existingCartItem.save();
+      res.json(existingCartItem);
+    } else {
+      // If no cart item exists, create a new one
+      const newCartItem = await CartItem.create({ productIds });
+      res.json(newCartItem);
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -53,7 +65,20 @@ const getCart = async (req, res) => {
   }
 };
 
+// Remove product from cart
+const removeFromCart = async (req, res) => {
+  try {
+    const { productId } = req.params;
 
+    // Assuming CartItem.findOneAndUpdate is available in your model
+    await CartItem.findOneAndUpdate({}, { $pull: { productIds: productId } });
+
+    res.json({ message: 'Product removed from cart successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 // Delete all cart items
 const deleteAllCartItems = async (req, res) => {
@@ -67,5 +92,5 @@ const deleteAllCartItems = async (req, res) => {
 };
 
 export default {
-  addToCart,getCart,deleteAllCartItems,
+  addToCart,getCart,deleteAllCartItems,removeFromCart,
 };
