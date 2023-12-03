@@ -1,56 +1,78 @@
-// OrderComplete.js
+// OrderComplete.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Style/OrderComplete.css'; // Import your stylesheet for styling
 
-const OrderComplete = () => {
-  const [order, setOrder] = useState(null);
+const OrderComplete = ({ orderId }) => {
+  const [orderDetails, setOrderDetails] = useState(null);
+  const [productDetails, setProductDetails] = useState([]);
 
   useEffect(() => {
-    // Fetch the order data from the backend
-    const fetchOrder = async () => {
+    const fetchOrderDetails = async () => {
       try {
-        const response = await axios.post('/api/orders/place-order', { items: [] });
-        // Assuming the backend returns the order details
-        setOrder(response.data);
+        // Fetch order details
+        const orderResponse = await axios.get(`http://127.0.0.1:8080/api/orders/get-orders`);
+        setOrderDetails(orderResponse.data);
+
+        // Fetch product details for each productId in the order
+        const productIds = orderResponse.data.productIds;
+        const productResponse = await axios.get('http://127.0.0.1:8080/api/products');
+        const filteredProducts = productResponse.data.filter(product => productIds.includes(product._id));
+        setProductDetails(filteredProducts);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchOrder();
-  }, []);
+    fetchOrderDetails();
+  }, [orderId]);
 
-  const calculateTotal = () => {
-    if (!order || !order.items) return 0;
-    return order.items.reduce((total, item) => total + item.price, 0).toFixed(2);
+  if (!orderDetails || productDetails.length === 0) {
+    return <p>Loading...</p>;
+  }
+
+  const renderProductDetails = () => {
+    return productDetails.map(product => (
+      <div key={product._id} className="product-cart">
+        <img src={product.imageUrl} alt={product.name} className="product-image" />
+        <div className="product-info">
+          <h3>{product.name}</h3>
+          <p>Price: ${product.price.toFixed(2)}</p>
+        </div>
+      </div>
+    ));
   };
 
   return (
-    <div>
-      <h2>Order Complete</h2>
-      {order ? (
-        <div>
-          <p>Thank you for Ordering</p>
-          <div>
-            <h3>Order Summary</h3>
-            <ul>
-              {order.items.map((product) => (
-                <li key={product.id}>
-                  <span>{product.name}</span>
-                  <span>${product.price.toFixed(2)}</span>
-                </li>
-              ))}
-            </ul>
-            <div>
-              <strong>Total:</strong>
-              <span>${calculateTotal()}</span>
-            </div>
-            {/* Additional UI elements based on your requirements */}
+    <div className="order-complete-container">
+      <div className="left-section">
+        <h2 className="thank-you-message">Thank you for Ordering, {orderDetails.contactName}!</h2>
+        <div className="order-details">
+          <h3>Your Order Details</h3>
+          {renderProductDetails()}
+          <p><b>Total Price: ${orderDetails.totalPrice.toFixed(2)}</b></p>
+        </div>
+      </div>
+      <div className="right-section">
+        <div className="cart-address">
+          <div className="billing-address">
+            <h3>Billing Address</h3>
+            <p>{orderDetails.billingStreetAddress}</p>
+            <p>{orderDetails.billingCity}, {orderDetails.billingState}, {orderDetails.billingCountry}</p>
+            <p>{orderDetails.billingZipCode}</p>
+          </div>
+          <div className="shipping-address">
+            <h3>Shipping Address</h3>
+            <p>{orderDetails.streetAddress}</p>
+            <p>{orderDetails.city}, {orderDetails.state}, {orderDetails.country}</p>
+            <p>{orderDetails.zipCode}</p>
           </div>
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+        <div className="email-details">
+          <h3>Email</h3>
+          <p>{orderDetails.email}</p>
+        </div>
+      </div>
     </div>
   );
 };

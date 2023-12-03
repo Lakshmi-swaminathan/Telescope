@@ -56,7 +56,7 @@ const Home = ({ products, onAddToCart  }) => (
     <h2>Products</h2>
     <div>
       {products.map((product) => (
-        <Product key={product.imageUrl} product={product} onAddToCart={onAddToCart}/>
+        <Product key={product._id} product={product} onAddToCart={onAddToCart}/>
       ))}
     </div>
   </div>
@@ -65,19 +65,14 @@ const Home = ({ products, onAddToCart  }) => (
 const App = () => {
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    // Fetch products from your server or API
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8080/api/products');
-        setProducts(response.data);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8080/api/products');
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
 
   const [cart, setCart] = useState([]);
   const fetchCart = async () => {
@@ -88,6 +83,12 @@ const App = () => {
       console.error('Error fetching cart:', error);
     }
   };
+
+  useEffect(() => {
+    // Fetch products from your server or API
+    fetchProducts();
+    fetchCart();
+  }, []);
   
   const handleAddToCart = async (product) => {
     try {
@@ -103,17 +104,24 @@ const App = () => {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Telescope</Link>
-            </li>
-            <li>
-              <Link to="/cart">Cart</Link>
-            </li>
-          </ul>
-        </nav>
+      <header style={{ display: 'flex', justifyContent: 'space-between', padding: '10px' }}>
+          <Link to="/">
+            <img
+              src="https://m.media-amazon.com/images/I/71MOZXz8h0L._AC_SL1000_.jpg" // Replace with the actual image URL for Telescope
+              alt="Telescope"
+              style={{ width: '50px', height: '50px' }}
+            />
+          </Link>
+          <Link to="/cart">
+              <img
+                src="https://www.shutterstock.com/image-vector/shopping-cart-vector-icon-flat-600nw-1690453492.jpg" // Replace with the actual image URL for the Cart
+                alt="Cart"
+                style={{ width: '50px', height: '50px' }}
+              />({cart.length})
+          </Link>
+        </header>
 
+        <hr />
         <hr />
 
         <Routes>

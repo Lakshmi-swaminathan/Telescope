@@ -8,6 +8,7 @@ const productSchema = new mongoose.Schema({
   imageUrl: String,
   //OWner mailId
   //Product condition
+  //owner phone number
 });
 
 const Product = mongoose.model('Product', productSchema);

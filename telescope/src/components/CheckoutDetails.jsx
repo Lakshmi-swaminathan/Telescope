@@ -1,9 +1,14 @@
 // CheckoutDetails.js
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import checkoutStyles from './Style/checkoutStyles.js';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Assuming you're using React Router v6
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CheckoutDetails = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -14,7 +19,17 @@ const CheckoutDetails = () => {
     city: '',
     state: '',
     zipCode: '',
-    useDifferentBilling: false,
+    billingStreetAddress: '',
+    billingCountry: '',
+    billingCity: '',
+    billingState: '',
+    billingZipCode: '',
+    creditCardNumber: '',
+    cardHolderName: '',
+    expiryMonth: '',
+    expiryYear: '',
+    cvv: '',
+    
     paymentMethod: 'creditCard',
   });
 
@@ -23,7 +38,7 @@ const CheckoutDetails = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await axios.get('/api/cart');
+        const response = await axios.get('http://127.0.0.1:8080/api/cart/getCart');
         setCart(response.data);
       } catch (error) {
         console.error(error);
@@ -44,32 +59,62 @@ const CheckoutDetails = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Additional logic for form validation, total price calculation, etc.
-      const totalPrice = cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
-
-      // Prepare order data
+      const totalPrice = cart.reduce((total, item) => total + item.price , 0);
+      const {
+        firstName,
+        lastName,
+        phoneNumber,
+        emailAddress,
+        streetAddress,
+        country,
+        city,
+        state,
+        zipCode,
+        billingStreetAddress,
+        billingCountry,
+        billingCity,
+        billingState,
+        billingZipCode,
+      } = formData;
+  
       const orderData = {
-        items: cart.map((item) => ({ productId: item.product._id, quantity: item.quantity })),
+        items: cart.map((item) => ({ productId: item._id })),
         totalPrice,
+        streetAddress,
+        country,
+        city,
+        state,
+        zipCode,
+        billingStreetAddress,
+        billingCountry,
+        billingCity,
+        billingState,
+        billingZipCode,
+        contactName: `${firstName} ${lastName}`,
+        email: emailAddress,
       };
-
-      // Place the order
+  
       await axios.post('http://127.0.0.1:8080/api/orders/place-order', orderData);
+      // Display a success notification
+      toast.success('Order placed successfully');
 
-      // Additional logic for redirecting or displaying a confirmation message
+      // Redirect to OrderComplete page
+      navigate('/order-complete');
     } catch (error) {
       console.error(error);
     }
   };
+  
+  
 
   return (
-    <div>
-      <h2>Checkout Details</h2>
+    <div style={checkoutStyles.container}>
+      <h2 style={checkoutStyles.title}>Checkout Details</h2>
       <form onSubmit={handleSubmit}>
         {/* Contact Information */}
-        <section>
+        <section style={checkoutStyles.section}>
           <h3>Contact Information</h3>
-          <div>
+          <div style={checkoutStyles.inputGroup}>
             <label htmlFor="firstName">First Name:</label>
             <input
               type="text"
@@ -78,9 +123,10 @@ const CheckoutDetails = () => {
               value={formData.firstName}
               onChange={handleChange}
               required
+              style={checkoutStyles.inputField}
             />
           </div>
-          <div>
+          <div style={checkoutStyles.inputGroup}>
             <label htmlFor="lastName">Last Name:</label>
             <input
               type="text"
@@ -89,9 +135,10 @@ const CheckoutDetails = () => {
               value={formData.lastName}
               onChange={handleChange}
               required
+              style={checkoutStyles.inputField}
             />
           </div>
-          <div>
+          <div style={checkoutStyles.inputGroup}>
             <label htmlFor="phoneNumber">Phone Number:</label>
             <input
               type="tel"
@@ -100,9 +147,10 @@ const CheckoutDetails = () => {
               value={formData.phoneNumber}
               onChange={handleChange}
               required
+              style={checkoutStyles.inputField}
             />
           </div>
-          <div>
+          <div style={checkoutStyles.inputGroup}>
             <label htmlFor="emailAddress">Email Address:</label>
             <input
               type="email"
@@ -111,14 +159,15 @@ const CheckoutDetails = () => {
               value={formData.emailAddress}
               onChange={handleChange}
               required
+              style={checkoutStyles.inputField}
             />
           </div>
         </section>
 
         {/* Shipping Address */}
-        <section>
+        <section style={checkoutStyles.section}>
           <h3>Shipping Address</h3>
-          <div>
+          <div style={checkoutStyles.inputGroup}>
             <label htmlFor="streetAddress">Street Address:</label>
             <input
               type="text"
@@ -127,9 +176,10 @@ const CheckoutDetails = () => {
               value={formData.streetAddress}
               onChange={handleChange}
               required
+              style={checkoutStyles.inputField}
             />
           </div>
-          <div>
+          <div style={checkoutStyles.inputGroup}>
             <label htmlFor="country">Country:</label>
             <input
               type="text"
@@ -138,9 +188,10 @@ const CheckoutDetails = () => {
               value={formData.country}
               onChange={handleChange}
               required
+              style={checkoutStyles.inputField}
             />
           </div>
-          <div>
+          <div style={checkoutStyles.inputGroup}>
             <label htmlFor="city">City:</label>
             <input
               type="text"
@@ -149,9 +200,10 @@ const CheckoutDetails = () => {
               value={formData.city}
               onChange={handleChange}
               required
+              style={checkoutStyles.inputField}
             />
           </div>
-          <div>
+          <div style={checkoutStyles.inputGroup}>
             <label htmlFor="state">State:</label>
             <input
               type="text"
@@ -160,9 +212,10 @@ const CheckoutDetails = () => {
               value={formData.state}
               onChange={handleChange}
               required
+              style={checkoutStyles.inputField}
             />
           </div>
-          <div>
+          <div style={checkoutStyles.inputGroup}>
             <label htmlFor="zipCode">Zip Code:</label>
             <input
               type="text"
@@ -171,64 +224,159 @@ const CheckoutDetails = () => {
               value={formData.zipCode}
               onChange={handleChange}
               required
+              style={checkoutStyles.inputField}
             />
           </div>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                name="useDifferentBilling"
-                checked={formData.useDifferentBilling}
-                onChange={handleChange}
-              />
-              Use a different billing address (Optional)
-            </label>
+        </section>
+
+        {/* Billing Address */}
+        <section style={checkoutStyles.section}>
+          <h3>Billing Address</h3>
+          <div style={checkoutStyles.inputGroup}>
+            <label htmlFor="billingStreetAddress">Street Address:</label>
+            <input
+              type="text"
+              id="billingStreetAddress"
+              name="billingStreetAddress"
+              value={formData.billingStreetAddress}
+              onChange={handleChange}
+              required
+              style={checkoutStyles.inputField}
+            />
+          </div>
+          <div style={checkoutStyles.inputGroup}>
+            <label htmlFor="billingCountry">Country:</label>
+            <input
+              type="text"
+              id="billingCountry"
+              name="billingCountry"
+              value={formData.billingCountry}
+              onChange={handleChange}
+              required
+              style={checkoutStyles.inputField}
+            />
+          </div>
+          <div style={checkoutStyles.inputGroup}>
+            <label htmlFor="billingCity">City:</label>
+            <input
+              type="text"
+              id="billingCity"
+              name="billingCity"
+              value={formData.billingCity}
+              onChange={handleChange}
+              required
+              style={checkoutStyles.inputField}
+            />
+          </div>
+          <div style={checkoutStyles.inputGroup}>
+            <label htmlFor="billingState">State:</label>
+            <input
+              type="text"
+              id="billingState"
+              name="billingState"
+              value={formData.billingState}
+              onChange={handleChange}
+              required
+              style={checkoutStyles.inputField}
+            />
+          </div>
+          <div style={checkoutStyles.inputGroup}>
+            <label htmlFor="billingZipCode">Zip Code:</label>
+            <input
+              type="text"
+              id="billingZipCode"
+              name="billingZipCode"
+              value={formData.billingZipCode}
+              onChange={handleChange}
+              required
+              style={checkoutStyles.inputField}
+            />
           </div>
         </section>
 
         {/* Payment Method */}
-        <section>
+        <section style={checkoutStyles.section}>
           <h3>Payment Method</h3>
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="creditCard"
-                checked={formData.paymentMethod === 'creditCard'}
-                onChange={handleChange}
-              />
-              Credit Card
-            </label>
+          <div style={checkoutStyles.inputGroup}>
+            <label htmlFor="creditCardNumber">Credit Card Number:</label>
+            <input
+              type="text"
+              id="creditCardNumber"
+              name="creditCardNumber"
+              value={formData.creditCardNumber}
+              onChange={handleChange}
+              required
+              style={checkoutStyles.inputField}
+            />
           </div>
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="paypal"
-                checked={formData.paymentMethod === 'paypal'}
-                onChange={handleChange}
-              />
-              Paypal
-            </label>
+          <div style={checkoutStyles.inputGroup}>
+            <label htmlFor="cardHolderName">Card Holder Name:</label>
+            <input
+              type="text"
+              id="cardHolderName"
+              name="cardHolderName"
+              value={formData.cardHolderName}
+              onChange={handleChange}
+              required
+              style={checkoutStyles.inputField}
+            />
+          </div>
+          <div style={checkoutStyles.inputGroup}>
+            <label htmlFor="expiryMonth">Expiry Month:</label>
+            <input
+              type="text"
+              id="expiryMonth"
+              name="expiryMonth"
+              value={formData.expiryMonth}
+              onChange={handleChange}
+              required
+              style={checkoutStyles.inputField}
+            />
+          </div>
+          <div style={checkoutStyles.inputGroup}>
+            <label htmlFor="expiryYear">Expiry Year:</label>
+            <input
+              type="text"
+              id="expiryYear"
+              name="expiryYear"
+              value={formData.expiryYear}
+              onChange={handleChange}
+              required
+              style={checkoutStyles.inputField}
+            />
+          </div>
+          <div style={checkoutStyles.inputGroup}>
+            <label htmlFor="cvv">CVV:</label>
+            <input
+              type="text"
+              id="cvv"
+              name="cvv"
+              value={formData.cvv}
+              onChange={handleChange}
+              required
+              style={checkoutStyles.inputField}
+            />
           </div>
         </section>
 
-        {/* Display Cart Items */}
-        <section>
+        {/* Cart Items */}
+        <section style={checkoutStyles.section}>
           <h3>Cart Items</h3>
-          <ul>
+          <ul style={checkoutStyles.cartList}>
             {cart.map((item) => (
-              <li key={item._id}>
-                {item.product.name} - Quantity: {item.quantity}
+              <li key={item._id} style={checkoutStyles.cartItem}>
+                {item.name} 
               </li>
             ))}
           </ul>
         </section>
 
-        <button type="submit">Place Order</button>
+        <button type="submit" style={checkoutStyles.submitButton}>
+          Place Order
+        </button>
       </form>
+      {/* React Toastify container for notifications */}
+      <ToastContainer position="bottom-right" autoClose={5000} />
     </div>
   );
 };

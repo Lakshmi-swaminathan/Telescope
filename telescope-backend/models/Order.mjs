@@ -2,15 +2,20 @@
 import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
-  items: [
-    {
-      productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-      }
-    },
-  ],
+  productIds: [String],
   totalPrice: Number,
+  streetAddress: String,
+    country: String,
+    city: String,
+    state: String,
+    zipCode: String,
+    billingStreetAddress: String,
+    billingCountry: String,
+    billingCity: String,
+    billingState: String,
+    billingZipCode: String,
+  contactName: String,
+  email: String,
 });
 
 const Order = mongoose.model('Order', orderSchema);

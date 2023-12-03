@@ -5,9 +5,39 @@ import CartItem from '../models/Cart.mjs';
 // Place order
 const placeOrder = async (req, res) => {
   try {
-    const { items } = req.body;
-    const totalPrice = items.reduce((total, item) => total + item.price, 0);
-    const order = await Order.create({ items, totalPrice });
+    const {
+      items,
+      totalPrice,
+      streetAddress,
+      country,
+      city,
+      state,
+      zipCode,
+      billingStreetAddress,
+      billingCountry,
+      billingCity,
+      billingState,
+      billingZipCode,
+      contactName,
+      email,
+    } = req.body;
+
+    const order = await Order.create({
+      productIds: items.map((item) => item.productId),
+      totalPrice: Number(totalPrice),
+      streetAddress,
+      country,
+      city,
+      state,
+      zipCode,
+      billingStreetAddress,
+      billingCountry,
+      billingCity,
+      billingState,
+      billingZipCode,
+      contactName,
+      email,
+    });
 
     // Clear the cart after placing the order
     await CartItem.deleteMany();
@@ -19,6 +49,18 @@ const placeOrder = async (req, res) => {
   }
 };
 
+// Get all orders
+const getOrders = async (req, res) => {
+  try {
+    const orders = await Order.findOne().sort({ createdAt: -1 }).limit(1);
+    res.json(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
 export default {
-  placeOrder,
+  placeOrder,getOrders,
 };

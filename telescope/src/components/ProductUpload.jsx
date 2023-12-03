@@ -1,73 +1,137 @@
-import React, { useState } from 'react';
+import React from "react";
 
-function ProductUpload() {
-  // Define state variables to store user input
-  const [category, setCategory] = useState('');
-  const [productCost, setProductCost] = useState('');
-  const [location, setLocation] = useState('');
-  const [image, setImage] = useState(null);
 
-  // Handle file input change
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-  };
+export default function UploadContent(){
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const [formdata,setformdata]= React.useState({productname:"",productcost:"",
+    email:"", productdescription:"",condition:"",images:[]})
+    
+  
+    function handlechangefn(event) {
+        
+        if (event.target.type === "file") {
+            // Handle file uploads separately
+            setformdata(prevformdata => {
+                return {
+                    ...prevformdata,
+                    images: [...prevformdata.images, ...event.target.files]
+                };
+            });
+        } else {
+            // Handle other form fields
+            setformdata(prevformdata => {
+                return {
+                    ...prevformdata,
+                    [event.target.name]: event.target.value
+                };
+            });
+        }
+        }
 
-    // Perform actions with the uploaded image and other details (e.g., send to the server)
-    console.log('Category:', category);
-    console.log('Product Cost:', productCost);
-    console.log('Location:', location);
-    console.log('Image:', image);
-  };
+        function handlesubmit(event){
+            event.preventDefault()
+            
+  
+            console.log(formdata)
+        }
 
-  return (
-    <div>
-      <h2>Product Upload</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Category:</label>
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Product Cost:</label>
-          <input
-            type="number"
-            value={productCost}
-            onChange={(e) => setProductCost(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Location:</label>
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Product Image:</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            required
-          />
-        </div>
-        <button type="submit">Upload</button>
-      </form>
-    </div>
-  );
+    return(
+
+        <form className="fullform" onSubmit={handlesubmit}>
+            <input 
+            className="nonradiobutton"
+            type="text" 
+            placeholder="Product Name" 
+            name="productname" 
+            value={formdata.productname}
+            onChange={handlechangefn} />
+
+            <input type="text" 
+            className="nonradiobutton" 
+            placeholder="Product Cost" 
+            name="productcost" 
+            value={formdata.productcost}
+            onChange={handlechangefn} />
+
+            <input type="email"
+            className="nonradiobutton"
+            placeholder="Email" 
+            name="email" 
+            value={formdata.email}
+            onChange={handlechangefn} />
+
+            <textarea 
+            name="productdescription" 
+            className="nonradiobutton"
+            id="" cols="50" 
+            placeholder="Include Description about the Product"
+            value={formdata.productdescription}
+            onChange={handlechangefn}
+            rows="10"></textarea>
+
+            <div className="radiobutton">
+                <fieldset>
+                    <legend>Please select an option from below</legend>
+                    <div className="individualrbtn">
+                        <input type="radio"
+                        name="condition"
+                        id="new" 
+                        value="new"
+                        onChange={handlechangefn}
+                        />
+                        <label htmlFor="new">New</label>
+                    </div>
+                    
+                    <div className="individualrbtn">
+                        <input type="radio"
+                        name="condition"
+                        id="used-new" 
+                        value="used-new"
+                        onChange={handlechangefn}
+                        
+                        />
+                        <label htmlFor="new">Used-New</label>
+                    </div>
+
+                    <div className="individualrbtn">
+                        <input type="radio"
+                        name="condition"
+                        id="used-good" 
+                        value="used-good"
+                        onChange={handlechangefn}
+                        
+                        />
+                        <label htmlFor="new">Used-Good</label> 
+                    </div>
+                    
+                    <div className="individualrbtn">
+                        <input type="radio"
+                        name="condition"
+                        id="used-fair" 
+                        value="used-fair"
+                        onChange={handlechangefn}
+                        />
+                        <label htmlFor="new">Used-Fair</label> 
+                    </div>
+                    
+                </fieldset>
+                </div>
+
+                {/* File input for images */}
+                <div className="file-upload">
+                    <label htmlFor="imageUpload">Upload Images:</label>
+                    <input
+                        type="file"
+                        id="imageUpload"
+                        name="images"
+                        accept="image/*"
+                        multiple
+                        onChange={handlechangefn}
+                />
+                </div>
+                <br />
+                
+            <button type="submit">Submit</button>
+        </form>
+    )
 }
-
-export default ProductUpload;

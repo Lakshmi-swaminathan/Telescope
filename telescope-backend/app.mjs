@@ -36,6 +36,7 @@ import productRoutes from './routes/productRoutes.mjs';
 import cartRoutes from './routes/cartRoutes.mjs';
 import orderRoutes from './routes/orderRoutes.mjs';
 import Product from './models/Product.mjs';
+import Order from './models/Order.mjs';
 
   
 dotenv.config();
@@ -73,6 +74,17 @@ app.post('/api/add-product', async (req, res) => {
     res.status(500).json({ error: 'Error inserting product.' });
   }
 });
+
+app.delete('/api/delete-orders', async (req, res) => {
+  try {
+    await Order.deleteMany({});
+    res.status(204).end(); // No content, successful deletion
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
