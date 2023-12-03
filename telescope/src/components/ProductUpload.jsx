@@ -1,73 +1,128 @@
-import React, { useState } from 'react';
+import React from "react";
+import axios from 'axios';
 
-function ProductUpload() {
-  // Define state variables to store user input
-  const [category, setCategory] = useState('');
-  const [productCost, setProductCost] = useState('');
-  const [location, setLocation] = useState('');
-  const [image, setImage] = useState(null);
+export default function ProductUpload(){
 
-  // Handle file input change
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-  };
+  const [formdata,setformdata]= React.useState({productname:"",productcost:"",
+  email:"", productdescription:"",condition:"",image:""})
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    // Perform actions with the uploaded image and other details (e.g., send to the server)
-    console.log('Category:', category);
-    console.log('Product Cost:', productCost);
-    console.log('Location:', location);
-    console.log('Image:', image);
-  };
+  function handlechangefn(event) {
 
-  return (
-    <div>
-      <h2>Product Upload</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Category:</label>
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Product Cost:</label>
-          <input
-            type="number"
-            value={productCost}
-            onChange={(e) => setProductCost(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Location:</label>
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Product Image:</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            required
-          />
-        </div>
-        <button type="submit">Upload</button>
-      </form>
-    </div>
-  );
-}
+    setformdata(prevformdata => {
+        return {
+            ...prevformdata,
+            [event.target.name]: event.target.value
+        };
+    });
+   }
 
-export default ProductUpload;
+  function handlesubmit(event){
+      event.preventDefault()
+      axios.post('http://10.0.0.199:8080/api/add-product', 
+      { 
+        name: formdata.productname,
+        description: formdata.productdescription,
+        price: formdata.productcost,
+        imageUrl: formdata.image,
+      });
+      console.log(formdata)
+  }
+
+  return(
+
+    <form className="fullform" onSubmit={handlesubmit}>
+      <input 
+      className="nonradiobutton"
+      type="text" 
+      placeholder="Product Name" 
+      name="productname" 
+      value={formdata.productname}
+      onChange={handlechangefn} />
+
+      <input type="number" 
+      className="nonradiobutton" 
+      placeholder="Product Cost" 
+      name="productcost" 
+      value={formdata.productcost}
+      onChange={handlechangefn} />
+
+      <input type="email"
+      className="nonradiobutton"
+      placeholder="Email" 
+      name="email" 
+      value={formdata.email}
+      onChange={handlechangefn} />
+
+      <textarea 
+      name="productdescription" 
+      className="nonradiobutton"
+      id="" cols="50" 
+      placeholder="Include Description about the Product"
+      value={formdata.productdescription}
+      onChange={handlechangefn}
+      rows="10"></textarea>
+
+      <div className="radiobutton">
+        <fieldset>
+          <legend>Please select an option from below</legend>
+          <div className="individualrbtn">
+              <input type="radio"
+              name="condition"
+              id="new" 
+              value="new"
+              onChange={handlechangefn}
+              />
+              <label htmlFor="new">New</label>
+          </div>
+              
+          <div className="individualrbtn">
+              <input type="radio"
+              name="condition"
+              id="used-new" 
+              value="used-new"
+              onChange={handlechangefn}
+              
+              />
+              <label htmlFor="new">Used-New</label>
+          </div>
+
+          <div className="individualrbtn">
+              <input type="radio"
+              name="condition"
+              id="used-good" 
+              value="used-good"
+              onChange={handlechangefn}
+              
+              />
+              <label htmlFor="new">Used-Good</label> 
+          </div>
+          
+          <div className="individualrbtn">
+              <input type="radio"
+              name="condition"
+              id="used-fair" 
+              value="used-fair"
+              onChange={handlechangefn}
+              />
+              <label htmlFor="new">Used-Fair</label> 
+          </div>
+              
+          </fieldset>
+          </div>
+
+          
+          <textarea 
+            name="image" 
+            className="nonradiobutton"
+            id="" cols="50" 
+            placeholder="Please paste the Google Drive link of Image"
+            value={formdata.image}
+            onChange={handlechangefn}
+            rows="10"></textarea>
+          <br />
+          
+      <button type="submit">Submit</button>
+  </form>
+  )
+  }
