@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import '../../Style/shopcards.css';
 import axios from 'axios';  
+
 // import Data from './data'
 
 export default function Card(props) {
@@ -51,6 +52,7 @@ export default function Card(props) {
       <button className="buy" onClick={() => handleBuyNow(props.id)}>
         {isInCart ? 'Remove from Cart' : 'Add to Cart'}
       </button>
+      
     </div>
   );
 }

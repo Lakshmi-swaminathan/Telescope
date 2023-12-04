@@ -3,6 +3,9 @@ import Shopmain from './shoppage/filters';
 import ShopCard from './shoppage/shopcards';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Footer from '../Layout/Footer';
+import Navbar from '../Layout/Navbar';
+import Header from '../Layout/Header';
 // import './App.css';
 
 // import data from './components/shoppage/data';
@@ -43,12 +46,17 @@ export default function ShopMainPage() {
       {/ page 2 */}
       {/* <ProductDetails /> */}
 
+
+      <Header />
+      <Navbar />
       <Shoppagetitle />
       <Shopmain />
       <div className='all-cards'>
         {content}
       </div>
       <ProductDetails />
+
+      <Footer />
 
 
 

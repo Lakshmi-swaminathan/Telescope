@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../Style/shoptitle.css';
 
+
 export default function shoppagetitle(){
 
 
@@ -21,6 +22,7 @@ export default function shoppagetitle(){
                     
                 </div>
             </section>
+            
         </div>
     )
 }
