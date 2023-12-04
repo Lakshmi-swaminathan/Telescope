@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import '../components/Style/ProductUpload.css';
+import Header from './Layout/Header'
 <components></components>
 
 
@@ -49,8 +50,9 @@ export default function ProductUpload() {
   }
 
   return(
-    
-    <form className="fullform" onSubmit={handlesubmit}>
+    <div>
+      <Header />
+      <form className="fullform" onSubmit={handlesubmit}>
       <h1>Pleased Upload the Product</h1>
       <input 
       className="nonradiobutton"
@@ -169,5 +171,7 @@ export default function ProductUpload() {
           
       <button type="submit">Submit</button>
   </form>
+    </div>
+    
   )
   }
