@@ -2,10 +2,13 @@ import React from "react";
 import axios from 'axios';
 import '../components/Style/ProductUpload.css';
 import Header from './Layout/Header'
+import { useNavigate } from "react-router-dom";
 <components></components>
 
 
 export default function ProductUpload() {
+
+  const navigate=useNavigate()
   const [formdata, setformdata] = React.useState({
     productname: "",
     productcost: "",
@@ -31,23 +34,45 @@ export default function ProductUpload() {
   };
 
   // Function to handle input change and update image link
-  const handleImageChange = (event) => {
-    const link = event.target.value;
-    const fileId = extractFileId(link);
-    const imageLink = fileId ? `https://drive.google.com/uc?id=${fileId}` : "";
-    setformdata((prevData) => ({ ...prevData, image: imageLink }));
-  };
+  // const handleImageChange = (event) => {
+  //   const link = event.target.value;
+  //   const fileId = extractFileId(link);
+  //   const imageLink = fileId ? `https://drive.google.com/uc?id=${fileId}` : "";
+  //   setformdata((prevData) => ({ ...prevData, image: imageLink }));
+  // };
+
+  // function handlesubmit(event) {
+  //   event.preventDefault();
+    
+  //   axios.post('http://127.0.0.1:8080/api/add-product', {
+  //     name: formdata.productname,
+  //     description: formdata.productdescription,
+  //     price: formdata.productcost,
+  //     imageUrl: formdata.image,
+  //   });
+    
+  //   console.log(formdata);
+  // }
 
   function handlesubmit(event) {
     event.preventDefault();
+    const link = formdata.image;
+    const fileId = extractFileId(link);
+
+    const imageLink = fileId ? `https://drive.google.com/uc?id=${fileId}` : "";
+    setformdata((prevData) => ({ ...prevData, image: imageLink }));
+
     axios.post('http://127.0.0.1:8080/api/add-product', {
       name: formdata.productname,
       description: formdata.productdescription,
       price: formdata.productcost,
       imageUrl: formdata.image,
     });
-    console.log(formdata);
+    navigate('/SubmitProduct')
+    console.log(formdata.image);
+
   }
+
 
   return(
     <div>
@@ -94,7 +119,7 @@ export default function ProductUpload() {
         placeholder="Drive Link"
         name="image"
         value={formdata.image}
-        onChange={handleImageChange}
+        onChange={handlechangefn}
         required
       />
 

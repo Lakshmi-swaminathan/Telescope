@@ -27,6 +27,7 @@ import CheckoutDetails from './components/CheckoutDetails.jsx';
 import OrderComplete from './components/OrderComplete.jsx';
 import { toast } from 'react-toastify'; 
 import ProductUpload from "./components/ProductUpload";
+import SubmitProduct from "./components/SubmitProduct";
 
 const App = () => {
   const [stripeApikey, setStripeApiKey] = useState("");
@@ -87,6 +88,7 @@ const App = () => {
         <Route path="/checkout" element={<CheckoutDetails />} />
         <Route path="/order-complete" element={<OrderComplete />} />
         <Route path="/product-upload" element={<ProductUpload />} />
+        <Route path="/SubmitProduct" element={<SubmitProduct />} />
       </Routes>
         
       <ToastContainer
