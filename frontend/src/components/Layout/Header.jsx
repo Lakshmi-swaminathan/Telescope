@@ -138,6 +138,7 @@ const Header = ({ activeHeading }) => {
               ) : null}
             </div>
           </div>
+          
           {/* navitems */}
           <div className={`${styles.noramlFlex}`}>
             <Navbar active={activeHeading} />

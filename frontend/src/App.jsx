@@ -20,6 +20,7 @@ import axios from "axios";
 import { server } from "./server";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import  ShopMainPage from "./components/ShoppageComponents/ShopMainPage" ;
 
 const App = () => {
   const [stripeApikey, setStripeApiKey] = useState("");
@@ -52,6 +53,8 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignupPage />} />
+        <Route path="/Shop" element={<ShopMainPage />} />
+        
       </Routes>
         
       <ToastContainer
