@@ -51,6 +51,7 @@ import { ShoppingCart} from './components/ShoppingCart.jsx';
 import CheckoutDetails from './components/CheckoutDetails.jsx';
 import OrderComplete from './components/OrderComplete.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
+import ShopMainPage from './components/ShoppageComponents/ShopMainPage.jsx'
 
 const Home = ({ products, onAddToCart, cart, onRemoveFromCart }) => (
   <div>
@@ -144,11 +145,17 @@ const App = () => {
         <hr />
         <hr />
 
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<Home products={products} onAddToCart={handleAddToCart} cart={cart} onRemoveFromCart={handleRemoveFromCart}/>} />
           <Route path="/cart" element={<ShoppingCart handleRemoveFromCart={handleRemoveFromCart}/>} />
           <Route path="/checkout" element={<CheckoutDetails />} />
           <Route path="/order-complete" element={<OrderComplete />} />
+        </Routes> */}
+        <Routes>
+        <Route path="/" element={<ShopMainPage/>} />
+        <Route path="/cart" element={<ShoppingCart handleRemoveFromCart={handleRemoveFromCart}/>}/>
+        <Route path="/checkout" element={<CheckoutDetails />} />
+        <Route path="/order-complete" element={<OrderComplete />} />
         </Routes>
 
       </div>

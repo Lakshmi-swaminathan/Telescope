@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import '../../styles/filters.css'
+import '../../Style/filters.css';
 
 export default function Dropdown() {
   const [availability, setAvailability] = useState('Availability ▼');
