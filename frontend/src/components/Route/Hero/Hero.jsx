@@ -23,29 +23,47 @@ const Hero = () => {
   };
   
   return (
-    <div
-      // className={`relative min-h-[50vh] 800px:min-h-[80vh] w-full bg-no-repeat ${styles.noramlFlex}`}
-      // style={{
-      //   backgroundImage:
-      //   `url(${Homepage})`,
-      // }}
-      className="Hero-banner"
-    >
-      <div 
-      className={`${styles.section} w-[90%] 800px:w-[60%]`}
-      >
-        <h1 style={customStyle}>
-          ONE STOP SHOP FOR <br /> PFW STUDENTS
-        </h1>
-        <Link to="/login" className="inline-block">
-            <div className={`${styles.button} mt-5`}>
-                 {/* <button onClick={handleLogin} className="text-[#fff] font-[Poppins] text-[18px]"> */}
-                 <button className="text-[#fff] font-[Poppins] text-[18px]">
-                    Login/Sign-Up
-                 </button>
-            </div>
-        </Link>
+    // <div
+    //   // className={`relative min-h-[50vh] 800px:min-h-[80vh] w-full bg-no-repeat ${styles.noramlFlex}`}
+    //   // style={{
+    //   //   backgroundImage:
+    //   //   `url(${Homepage})`,
+    //   // }}
+    //   className="Hero-banner"
+    // >
+    //   <div 
+    //   className={`${styles.section} w-[90%] 800px:w-[60%]`}
+    //   >
+    //     {/* <h1 style={customStyle}>
+    //       ONE STOP SHOP FOR <br /> PFW STUDENTS
+    //     </h1> */}
+    //     <Link to="/login" className="inline-block">
+    //         <div className={`${styles.button} mt-5`}>
+    //              {/* <button onClick={handleLogin} className="text-[#fff] font-[Poppins] text-[18px]"> */}
+    //              <button className="text-[#fff] font-[Poppins] text-[18px]">
+    //                 Login/Sign-Up
+    //              </button>
+    //         </div>
+    //     </Link>
+    //   </div>
+    // </div>
+    <div className="outer-container">
+      <div className="banner">
+        <div className="inner-box">
+          <div className="inner-box-content">
+            ONE STOP SHOP FOR <br /> PFW STUDENTS <br />
+            <Link to="/login" className="inline-block">
+              <div className="login-button">
+                <button >
+                      Login/Sign-Up
+                </button>
+              </div>
+            </Link>
+          </div>
+          
+        </div>
       </div>
+      
     </div>
   );
 };
