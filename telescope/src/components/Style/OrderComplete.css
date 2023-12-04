@@ -1,4 +1,4 @@
-/* OrderComplete.css */
+
 .order-complete-container {
     display: flex;
     justify-content: space-between;
@@ -20,6 +20,7 @@
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
+    
   }
   
   .product-image {
@@ -43,5 +44,8 @@
     width: 30%;
   }
   
-  /* Add more styles as needed */
+  .thank-you-message {
+    color:green;
+  }
+ 
   

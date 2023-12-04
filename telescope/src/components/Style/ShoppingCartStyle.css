@@ -1,68 +1,37 @@
-/* ShoppingCart.css */
 .shopping-cart-container {
-    margin: 20px;
-  }
-  
-  .cart-items {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .cart-item {
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .item-details {
-    display: flex;
-    align-items: center;
-  }
-  
-  .item-image {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  .checkout-link {
-    text-decoration: none;
-    margin-top: 20px;
-    display: inline-block;
-  }
-  
-  .checkout-button {
-    background-color: #0b110c;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .checkout-button:hover {
-    background-color: #4562a0;
-  }
-
-  /* ShoppingCart.css */
-.shopping-cart-container {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart-items {
   list-style: none;
   padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .cart-item {
-  border: 1px solid #ddd;
-  margin-bottom: 10px;
-  padding: 10px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  position: relative; /* Added for positioning the delete icon */
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.cart-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .item-details {
@@ -71,40 +40,43 @@
 }
 
 .item-image {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .delete-icon {
   cursor: pointer;
-  position: absolute;
-  top: 5px;
-  right: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-icon:hover {
+  transform: rotate(360deg);
 }
 
 .trash-icon {
-  width: 20px; /* Adjust the width as needed */
-  height: 20px; /* Adjust the height as needed */
+  width: 20px;
+  height: 20px;
 }
 
 .checkout-link {
-  text-decoration: none;
   margin-top: 20px;
-  display: inline-block;
 }
 
 .checkout-button {
-  background-color: #0b110c;
-  color: white;
-  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 20px;
   font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .checkout-button:hover {
-  background-color: #4562a0;
+  background-color: #0069d9;
 }
-
-  

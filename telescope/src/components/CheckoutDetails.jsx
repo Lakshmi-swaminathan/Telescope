@@ -1,7 +1,7 @@
 // CheckoutDetails.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import checkoutStyles from './Style/checkoutStyles.js';
+import checkoutStyles from './Style/checkoutStyles.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'; // Assuming you're using React Router v6
 import { toast, ToastContainer } from 'react-toastify';

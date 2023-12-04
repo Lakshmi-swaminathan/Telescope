@@ -33,8 +33,10 @@ const ShoppingCart = ({handleRemoveFromCart}) => {
     fetchCart();
   }, []);
 
+
   return (
     <div className="shopping-cart-container">
+      
       <h2>Your Cart</h2>
       <ul className="cart-items">
         {cart.map((item) => (
@@ -42,7 +44,7 @@ const ShoppingCart = ({handleRemoveFromCart}) => {
             <div className="item-details">
               {item.imageUrl && (
                 <img
-                  src={item.imageUrl}
+                  src={`https://drive.google.com/uc?id=${item.imageUrl}`}
                   alt={item.name}
                   className="item-image"
                 />
