@@ -35,6 +35,9 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage/>} />
+          <Route path="/cart" element={<ShoppingCart handleRemoveFromCart={handleRemoveFromCart}/>}/>
+          <Route path="/checkout" element={<CheckoutDetails />} />
+          <Route path="/order-complete" element={<OrderComplete />} />
         </Routes>
         </div>
     </>

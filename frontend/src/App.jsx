@@ -21,6 +21,11 @@ import { server } from "./server";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import  ShopMainPage from "./components/ShoppageComponents/ShopMainPage" ;
+import { ShoppingCart} from './components/ShoppingCart.jsx';
+//import ShoppingCart from './components/ShoppingCart.jsx';
+import CheckoutDetails from './components/CheckoutDetails.jsx';
+import OrderComplete from './components/OrderComplete.jsx';
+import { toast } from 'react-toastify'; 
 
 const App = () => {
   const [stripeApikey, setStripeApiKey] = useState("");
@@ -29,6 +34,17 @@ const App = () => {
     const { data } = await axios.get(`${server}/payment/stripeapikey`);
     setStripeApiKey(data.stripeApikey);
   }
+
+  const [cart, setCart] = useState([]);
+  const fetchCart = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/cart/getCart');
+      setCart(response.data);
+      console.log('Cart data '+response.data);
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    }
+  }
   useEffect(() => {
     Store.dispatch(loadUser());
     Store.dispatch(loadSeller());
@@ -36,6 +52,18 @@ const App = () => {
     Store.dispatch(getAllEvents());
     getStripeApikey();
   }, []);
+
+  const handleRemoveFromCart = async (productId) => {
+    try {
+      const response = await axios.delete(`http://127.0.0.1:8080/api/cart/remove-from-cart/${productId}`);
+      console.log('remove-from-cart ', response.data);
+      fetchCart();
+      toast.success('Cart item deleted successfully');
+    } catch (error) {
+      console.error('Error removing from cart:', error);
+      toast.error('Failed to delete cart item');
+    }
+  };
 
   return (
     <BrowserRouter>
@@ -54,7 +82,9 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignupPage />} />
         <Route path="/Shop" element={<ShopMainPage />} />
-        
+        <Route path="/cart" element={<ShoppingCart handleRemoveFromCart={handleRemoveFromCart}/>}/>
+        <Route path="/checkout" element={<CheckoutDetails />} />
+        <Route path="/order-complete" element={<OrderComplete />} />
       </Routes>
         
       <ToastContainer
