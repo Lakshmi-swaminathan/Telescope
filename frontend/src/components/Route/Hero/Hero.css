@@ -1,0 +1,6 @@
+.Hero-banner{
+    background: url('../../../Assests/homepage.png'), lightgray 50% / cover no-repeat;
+    width: 1440px;
+    height: 576px;
+    flex-shrink: 0;
+}

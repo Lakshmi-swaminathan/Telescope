@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
 import Homepage from '../../../Assests/homepage.png';
 import { useNavigate } from "react-router-dom";
+import '../Hero/Hero.css'
 
 
 const Hero = () => {
@@ -11,26 +12,31 @@ const Hero = () => {
   // const handleLogin = () => {
   //   navigate('/login');
   // }
+  const customStyle = {
+    borderRadius: '15px',
+    border: '7px solid #FFF',
+    background: 'rgba(58, 57, 57, 0.07)',
+    backdropFilter: 'blur(4.5px)',
+    width: '546px',
+    height: '288px',
+    flexShrink: 0,
+  };
+  
   return (
     <div
-      className={`relative min-h-[50vh] 800px:min-h-[80vh] w-full bg-no-repeat ${styles.noramlFlex}`}
-      style={{
-        backgroundImage:
-        `url(${Homepage})`,
-      }}
+      // className={`relative min-h-[50vh] 800px:min-h-[80vh] w-full bg-no-repeat ${styles.noramlFlex}`}
+      // style={{
+      //   backgroundImage:
+      //   `url(${Homepage})`,
+      // }}
+      className="Hero-banner"
     >
-      <div className={`${styles.section} w-[90%] 800px:w-[60%]`}>
-        <h1
-          className={`text-[35px] leading-[1.2] 800px:text-[60px] text-[#3d3a3a] font-[600] capitalize`}
-        >
+      <div 
+      className={`${styles.section} w-[90%] 800px:w-[60%]`}
+      >
+        <h1 style={customStyle}>
           ONE STOP SHOP FOR <br /> PFW STUDENTS
         </h1>
-        <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#000000ba]">
-          {/* Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae,
-          assumenda? Quisquam itaque <br /> exercitationem labore vel, dolore
-          quidem asperiores, laudantium temporibus soluta optio consequatur{" "}
-          <br /> aliquam deserunt officia. Dolorum saepe nulla provident. */}
-        </p>
         <Link to="/login" className="inline-block">
             <div className={`${styles.button} mt-5`}>
                  {/* <button onClick={handleLogin} className="text-[#fff] font-[Poppins] text-[18px]"> */}

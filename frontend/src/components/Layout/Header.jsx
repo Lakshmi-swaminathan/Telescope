@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
 import { categoriesData, productData } from "../../static/data";
 import {
-  AiOutlineHeart,
+  // AiOutlineHeart,
   AiOutlineSearch,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
@@ -18,6 +18,8 @@ import Wishlist from "../Wishlist/Wishlist";
 import { RxCross1 } from "react-icons/rx";
 import logo from '../../Assests/logo.png'
 import { useNavigate } from "react-router-dom";
+import ProductUpload from "../ProductUpload";
+
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -105,9 +107,9 @@ const Header = ({ activeHeading }) => {
           </div>
 
           <div className={`${styles.button}`}>
-            <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
+            <Link to='/product-upload'>
               <h1 className="text-[#fff] flex items-center">
-                {isSeller ? "Go Dashboard" : "Upload Product"}{" "}
+                Upload Product
                 <IoIosArrowForward className="ml-1" />
               </h1>
             </Link>
@@ -123,7 +125,7 @@ const Header = ({ activeHeading }) => {
           className={`${styles.section} relative ${styles.noramlFlex} justify-between`}
         >
           {/* categories */}
-          <div onClick={() => setDropDown(!dropDown)}>
+          {/* <div onClick={() => setDropDown(!dropDown)}>
             <div className="relative h-[60px] mt-[10px] w-[270px] hidden 1000px:block">
               <BiMenuAltLeft size={30} className="absolute top-3 left-2" />
               <button
@@ -143,7 +145,7 @@ const Header = ({ activeHeading }) => {
                 />
               ) : null}
             </div>
-          </div>
+          </div> */}
           
           {/* navitems */}
           <div className={`${styles.noramlFlex}`}>
@@ -152,7 +154,7 @@ const Header = ({ activeHeading }) => {
 
           <div className="flex">
             <div className={`${styles.noramlFlex}`}>
-              <div
+              {/* <div
                 className="relative cursor-pointer mr-[15px]"
                 onClick={() => setOpenWishlist(true)}
               >
@@ -160,7 +162,7 @@ const Header = ({ activeHeading }) => {
                 <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
                   {wishlist && wishlist.length}
                 </span>
-              </div>
+              </div> */}
             </div>
 
             <div className={`${styles.noramlFlex}`}>
@@ -259,7 +261,7 @@ const Header = ({ activeHeading }) => {
             <div className="fixed w-[70%] bg-[#fff] h-screen top-0 left-0 z-10 overflow-y-scroll">
               <div className="w-full justify-between flex pr-3">
                 <div>
-                  <div
+                  {/* <div
                     className="relative mr-[15px]"
                     onClick={() => setOpenWishlist(true) || setOpen(false)}
                   >
@@ -267,7 +269,7 @@ const Header = ({ activeHeading }) => {
                     <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
                       {wishlist && wishlist.length}
                     </span>
-                  </div>
+                  </div> */}
                 </div>
                 <RxCross1
                   size={30}
@@ -309,7 +311,7 @@ const Header = ({ activeHeading }) => {
 
               <Navbar active={activeHeading} />
               <div className={`${styles.button} ml-4 !rounded-[4px]`}>
-                <Link to="/shop-create">
+                <Link to="/product-upload">
                   <h1 className="text-[#fff] flex items-center">
                     Upload Product <IoIosArrowForward className="ml-1" />
                   </h1>

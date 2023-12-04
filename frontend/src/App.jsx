@@ -26,6 +26,7 @@ import { ShoppingCart} from './components/ShoppingCart.jsx';
 import CheckoutDetails from './components/CheckoutDetails.jsx';
 import OrderComplete from './components/OrderComplete.jsx';
 import { toast } from 'react-toastify'; 
+import ProductUpload from "./components/ProductUpload";
 
 const App = () => {
   const [stripeApikey, setStripeApiKey] = useState("");
@@ -85,6 +86,7 @@ const App = () => {
         <Route path="/cart" element={<ShoppingCart handleRemoveFromCart={handleRemoveFromCart}/>}/>
         <Route path="/checkout" element={<CheckoutDetails />} />
         <Route path="/order-complete" element={<OrderComplete />} />
+        <Route path="/product-upload" element={<ProductUpload />} />
       </Routes>
         
       <ToastContainer

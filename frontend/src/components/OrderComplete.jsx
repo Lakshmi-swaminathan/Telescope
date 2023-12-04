@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Style/OrderComplete.css'; // Import your stylesheet for styling
 
+
 const OrderComplete = ({ orderId }) => {
   const [orderDetails, setOrderDetails] = useState(null);
   const [productDetails, setProductDetails] = useState([]);
@@ -45,6 +46,7 @@ const OrderComplete = ({ orderId }) => {
 
   return (
     <div className="order-complete-container">
+      
       <div className="left-section">
         <h2 className="thank-you-message">Thank you for Ordering, {orderDetails.contactName}!</h2>
         <div className="order-details">
@@ -73,6 +75,7 @@ const OrderComplete = ({ orderId }) => {
           <p>{orderDetails.email}</p>
         </div>
       </div>
+      
     </div>
   );
 };

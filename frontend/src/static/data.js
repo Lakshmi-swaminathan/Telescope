@@ -8,18 +8,18 @@ export const navItems = [
       title: "Shop",
       url: "/shop",
     },
-    {
-      title: "Products",
-      url: "/products",
-    },
-    {
-      title: "Deals",
-      url: "/deals",
-    },
-    {
-      title: "FAQ",
-      url: "/faq",
-    },
+    // {
+    //   title: "Products",
+    //   url: "/products",
+    // },
+    // {
+    //   title: "Deals",
+    //   url: "/deals",
+    // },
+    // {
+    //   title: "FAQ",
+    //   url: "/faq",
+    // },
   ];
   
   // branding data
