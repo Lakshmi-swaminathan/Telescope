@@ -1,6 +1,7 @@
 // controllers/orderController.js
 import Order from '../models/Order.mjs';
 import CartItem from '../models/Cart.mjs';
+import Product from '../models/Product.mjs';
 
 // Place order
 const placeOrder = async (req, res) => {
@@ -52,13 +53,16 @@ const placeOrder = async (req, res) => {
 // Get all orders
 const getOrders = async (req, res) => {
   try {
-    const orders = await Order.findOne().sort({ createdAt: -1 }).limit(1);
+    const orders = await Order.find().sort({ createdAt: -1 }).limit(1);
     res.json(orders);
+    console.log('orders '+orders);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+
 
 
 export default {

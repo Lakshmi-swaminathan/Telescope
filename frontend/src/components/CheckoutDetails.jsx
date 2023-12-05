@@ -95,12 +95,15 @@ const CheckoutDetails = () => {
         email: emailAddress,
       };
   
-      await axios.post('http://127.0.0.1:8080/api/orders/place-order', orderData);
+      const orderResponse=await axios.post('http://127.0.0.1:8080/api/orders/place-order', orderData);
       // Display a success notification
-      toast.success('Order placed successfully');
-
-      // Redirect to OrderComplete page
+      
+      if(orderResponse.data!==undefined && orderResponse.data!==null){
+        toast.success('Order placed successfully');
+        // Redirect to OrderComplete page
       navigate('/order-complete');
+      }
+      
     } catch (error) {
       console.error(error);
     }
