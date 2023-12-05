@@ -5,6 +5,8 @@ import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import './Style/ShoppingCartStyle.css';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
+import Header from './Layout/Header';
+import Footer from './Layout/Footer'
 
 const ShoppingCart = ({handleRemoveFromCart}) => {
   const [cart, setCart] = useState([]);
@@ -34,7 +36,9 @@ const ShoppingCart = ({handleRemoveFromCart}) => {
   }, []);
 
   return (
-    <div className="shopping-cart-container">
+    <div>
+      <Header />
+      <div className="shopping-cart-container">
       <h2>Your Cart</h2>
       <ul className="cart-items">
         {cart.map((item) => (
@@ -64,6 +68,9 @@ const ShoppingCart = ({handleRemoveFromCart}) => {
         <button className="checkout-button">Proceed to Checkout</button>
       </Link>
     </div>
+    <Footer />
+    </div>
+    
   );
 };
 

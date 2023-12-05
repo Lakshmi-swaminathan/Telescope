@@ -45,13 +45,18 @@ export default function Card(props) {
 
   return (
     <div className="card">
-      <img src={props.image} alt={props.title} />
-      <h2>{props.title}</h2>
-      <p>{props.description}</p>
-      <div className="price">${props.price}</div>
-      <button className="buy" onClick={() => handleBuyNow(props.id)}>
-        {isInCart ? 'Remove from Cart' : 'Add to Cart'}
-      </button>
+      <div className='card-inner1'>
+        <div className='card-image'>
+          <img src={props.image} alt={props.title} />
+        </div>
+        <h2>{props.title}</h2>
+        <p>{props.description}</p>
+        <div className="price">${props.price}</div>
+        <button className="buy" onClick={() => handleBuyNow(props.id)}>
+          {isInCart ? 'Remove from Cart' : 'Add to Cart'}
+        </button>
+      </div>
+      
       
     </div>
   );
