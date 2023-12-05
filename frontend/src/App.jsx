@@ -32,12 +32,12 @@ import ProductUpload from "./components/ProductUpload";
 
 
 const App = () => {
-  const [stripeApikey, setStripeApiKey] = useState("");
+  // const [stripeApikey, setStripeApiKey] = useState("");
 
-  async function getStripeApikey() {
-    const { data } = await axios.get(`${server}/payment/stripeapikey`);
-    setStripeApiKey(data.stripeApikey);
-  }
+  // async function getStripeApikey() {
+  //   const { data } = await axios.get(`${server}/payment/stripeapikey`);
+  //   setStripeApiKey(data.stripeApikey);
+  // }
 
   const [cart, setCart] = useState([]);
   const fetchCart = async () => {
@@ -50,11 +50,11 @@ const App = () => {
     }
   }
   useEffect(() => {
-    Store.dispatch(loadUser());
-    Store.dispatch(loadSeller());
-    Store.dispatch(getAllProducts());
-    Store.dispatch(getAllEvents());
-    getStripeApikey();
+    // Store.dispatch(loadUser());
+    // Store.dispatch(loadSeller());
+    // Store.dispatch(getAllProducts());
+    // Store.dispatch(getAllEvents());
+    // getStripeApikey();
   }, []);
 
   const handleRemoveFromCart = async (productId) => {
@@ -71,7 +71,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {stripeApikey && (
+      {/* {stripeApikey && (
         <Elements stripe={loadStripe(stripeApikey)}>
           <Routes>
             <Route
@@ -80,7 +80,7 @@ const App = () => {
             />
           </Routes>
         </Elements>
-      )}
+      )} */}
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="/Home-page" element={< HomePage/>} />

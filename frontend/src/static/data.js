@@ -36,7 +36,7 @@ export const navItems = [
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
+          {/* <path
             d="M1 1H5.63636V24.1818H35"
             stroke="#FFBB38"
             stroke-width="2"
@@ -56,7 +56,9 @@ export const navItems = [
             stroke-width="2"
             stroke-miterlimit="10"
             stroke-linecap="square"
-          ></path>
+          ></path> */}
+
+          
           {/* <path
             d="M34.9982 1H11.8164V18H34.9982V1Z"
             stroke="#FFBB38"
@@ -114,7 +116,7 @@ export const navItems = [
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
+          {/* <path
             d="M7 13H5.5C2.95 13 1 11.05 1 8.5V1H7"
             stroke="#FFBB38"
             stroke-width="2"
@@ -145,7 +147,7 @@ export const navItems = [
             stroke-width="2"
             stroke-miterlimit="10"
             stroke-linecap="square"
-          ></path>
+          ></path> */}
         </svg>
       ),
     },
@@ -161,7 +163,7 @@ export const navItems = [
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
+          {/* <path
             d="M22.6654 18.667H9.33203V27.0003H22.6654V18.667Z"
             stroke="#FFBB38"
             stroke-width="2"
@@ -181,7 +183,7 @@ export const navItems = [
             stroke-width="2"
             stroke-miterlimit="10"
             stroke-linecap="square"
-          ></path>
+          ></path> */}
         </svg>
       ),
     },
