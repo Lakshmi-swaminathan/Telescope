@@ -1,70 +1,69 @@
 .dropdown {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
-  .dropdown__item {
-    position: relative;
-    margin: 0 1rem;
-  }
-  
-  .dropdown__button {
-    background-color: rgb(2, 2, 2);
-    border: none;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .dropdown__button:hover {
-    background-color: #f2f2f2;
-    color: rgb(6, 6, 5);
-  }
-  
-  .dropdown__button--availability {
-    color: #4caf50;
-  }
-  
-  .dropdown__button--price {
-    color: #2196f3;
-  }
-  
-  .dropdown__button--sort {
-    color: #9c27b0;
-  }
-  
-  .dropdown__list {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 0.5rem 0;
-    margin-top: 0.5rem;
-    display: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dropdown__list li {
-    list-style: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .dropdown__list li:hover {
-    background-color: #f2f2f2;
-  }
-  
-  .dropdown__item:hover .dropdown__list {
-    display: block;
-  }
-  
+}
+
+.dropdown__item {
+  position: relative;
+  margin: 0 1rem;
+}
+
+.dropdown__button {
+  background-color: rgb(2, 2, 2);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown__button:hover {
+  background-color: #f2f2f2;
+  color: rgb(6, 6, 5);
+}
+
+.dropdown__button--availability {
+  color: #4caf50;
+}
+
+.dropdown__button--price {
+  color: #2196f3;
+}
+
+.dropdown__button--sort {
+  color: #9c27b0;
+}
+
+.dropdown__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  display: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown__list li {
+  list-style: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown__list li:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown__item:hover .dropdown__list {
+  display: block;
+}
