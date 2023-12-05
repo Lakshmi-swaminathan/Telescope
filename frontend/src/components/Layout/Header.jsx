@@ -73,7 +73,7 @@ const Header = ({ activeHeading }) => {
             </Link>
           </div>
           {/* search box */}
-          <div className="w-[50%] relative">
+          {/* <div className="w-[50%] relative">
             <input
               type="text"
               placeholder="Search Product..."
@@ -104,7 +104,7 @@ const Header = ({ activeHeading }) => {
                   })}
               </div>
             ) : null}
-          </div>
+          </div> */}
 
           <div className={`${styles.button}`}>
             <Link to='/product-upload'>
