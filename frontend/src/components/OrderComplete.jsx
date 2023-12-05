@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Style/OrderComplete.css'; // Import your stylesheet for styling
+import Header from './Layout/Header';
+import Footer from './Layout/Footer';
 
 
 const OrderComplete = ({ orderId }) => {
@@ -48,6 +50,8 @@ const OrderComplete = ({ orderId }) => {
   };
 
   return (
+    <>
+    <Header/>
     <div className="order-complete-container">
       
       <div className="left-section">
@@ -80,6 +84,8 @@ const OrderComplete = ({ orderId }) => {
       </div>
       
     </div>
+    <Footer/>
+    </>
   );
 };
 

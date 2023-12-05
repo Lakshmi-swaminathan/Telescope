@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Style/ShoppingCartStyle.css';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
 import Header from './Layout/Header';
-import Footer from './Layout/Footer'
+import Footer from './Layout/Footer';
 
 const ShoppingCart = ({handleRemoveFromCart}) => {
   const [cart, setCart] = useState([]);

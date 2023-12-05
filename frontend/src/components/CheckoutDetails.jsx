@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'; // Assuming you're using React Router v6
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Header from './Layout/Header';
 import Footer from './Layout/Footer';
+
 
 const CheckoutDetails = () => {
   const navigate = useNavigate();
@@ -112,6 +114,8 @@ const CheckoutDetails = () => {
   
 
   return (
+    <div>
+      <Header/>
     <div style={checkoutStyles.container}>
       <h2 style={checkoutStyles.title}>Checkout Details</h2>
       <form onSubmit={handleSubmit}>
@@ -382,6 +386,8 @@ const CheckoutDetails = () => {
       {/* React Toastify container for notifications */}
       <ToastContainer position="bottom-right" autoClose={5000} />
      
+    </div>
+    <Footer/>
     </div>
   );
 };
