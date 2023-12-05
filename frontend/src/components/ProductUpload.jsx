@@ -58,18 +58,19 @@ export default function ProductUpload() {
     event.preventDefault();
     const link = formdata.image;
     const fileId = extractFileId(link);
-
+    console.log('fileId '+fileId);
     const imageLink = fileId ? `https://drive.google.com/uc?id=${fileId}` : "";
+    console.log('imageLink '+imageLink);
     setformdata((prevData) => ({ ...prevData, image: imageLink }));
 
     axios.post('http://127.0.0.1:8080/api/add-product', {
       name: formdata.productname,
       description: formdata.productdescription,
       price: formdata.productcost,
-      imageUrl: formdata.image,
+      imageUrl: imageLink,
     });
     navigate('/SubmitProduct')
-    console.log(formdata.image);
+    console.log('formdata.image '+formdata.image);
 
   }
 
