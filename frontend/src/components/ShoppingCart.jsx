@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'; // Import toast from react-toastify
 import Header from './Layout/Header';
 import Footer from './Layout/Footer';
 
-const ShoppingCart = ({handleRemoveFromCart}) => {
+const ShoppingCart = ({ handleRemoveFromCart }) => {
   const [cart, setCart] = useState([]);
 
   const fetchCart = async () => {
@@ -30,7 +30,8 @@ const ShoppingCart = ({handleRemoveFromCart}) => {
       console.error('Error removing from cart:', error);
       toast.error('Failed to delete cart item');
     }
-  };  
+  };
+
   useEffect(() => {
     fetchCart();
   }, []);
@@ -39,38 +40,43 @@ const ShoppingCart = ({handleRemoveFromCart}) => {
     <div>
       <Header />
       <div className="shopping-cart-container">
-      <h2>Your Cart</h2>
-      <ul className="cart-items">
-        {cart.map((item) => (
-          <li key={item._id} className="cart-item">
-            <div className="item-details">
-              {item.imageUrl && (
-                <img
-                  src={item.imageUrl}
-                  alt={item.name}
-                  className="item-image"
-                />
-              )}
-              <div>
-                <h3>{item.name}</h3>
-                <p>{item.description}</p>
-                <p>Price: ${item.price}</p>
-              </div>
-            </div>
-            <div className="delete-icon" onClick={() => handleRemoveFromCart1(item._id)}>
-              <img src="https://cdn-icons-png.flaticon.com/512/542/542724.png" alt="Trash" className="trash-icon" />
-            </div>
-          </li>
-        ))}
-      </ul>
+        {/* <h2>Your Cart</h2> */}
+        {cart.length === 0 ? (
+          <h2>Your cart is empty.<br/> You can add products to the cart and return back to this page!</h2>
+        ) : (
+          <>
+            <ul className="cart-items">
+              {cart.map((item) => (
+                <li key={item._id} className="cart-item">
+                  <div className="item-details">
+                    {item.imageUrl && (
+                      <img
+                        src={item.imageUrl}
+                        alt={item.name}
+                        className="item-image"
+                      />
+                    )}
+                    <div>
+                      <h3>{item.name}</h3>
+                      <p>{item.description}</p>
+                      <p>Price: ${item.price}</p>
+                    </div>
+                  </div>
+                  <div className="delete-icon" onClick={() => handleRemoveFromCart1(item._id)}>
+                    <img src="https://cdn-icons-png.flaticon.com/512/542/542724.png" alt="Trash" className="trash-icon" />
+                  </div>
+                </li>
+              ))}
+            </ul>
 
-      <Link to="/checkout" className="checkout-link">
-        <button className="checkout-button">Proceed to Checkout</button>
-      </Link>
+            <Link to="/checkout" className="checkout-link">
+              <button className="checkout-button">Proceed to Checkout</button>
+            </Link>
+          </>
+        )}
+      </div>
+      <Footer />
     </div>
-    <Footer />
-    </div>
-    
   );
 };
 
