@@ -37,14 +37,14 @@ const Hero = () => {
         <h1 style={customStyle}>
           ONE STOP SHOP FOR <br /> PFW STUDENTS
         </h1>
-        <Link to="/login" className="inline-block">
+        {/* <Link to="/login" className="inline-block">
             <div className={`${styles.button} mt-5`}>
-                 {/* <button onClick={handleLogin} className="text-[#fff] font-[Poppins] text-[18px]"> */}
+                  <button onClick={handleLogin} className="text-[#fff] font-[Poppins] text-[18px]"> 
                  <button className="text-[#fff] font-[Poppins] text-[18px]">
                     Login/Sign-Up
                  </button>
             </div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

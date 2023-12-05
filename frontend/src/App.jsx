@@ -8,6 +8,8 @@ import {
   HomePage,
   ShopLoginPage,
 } from "./routes/Routes.js";
+import LoginForm from './components/LoginForm.jsx'
+import SubmitProduct from "./components/SubmitProduct";
 
 
 import { ToastContainer } from "react-toastify";
@@ -79,14 +81,16 @@ const App = () => {
         </Elements>
       )}
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/Home-page" element={< HomePage/>} />
         <Route path="/sign-up" element={<SignupPage />} />
         <Route path="/Shop" element={<ShopMainPage />} />
         <Route path="/cart" element={<ShoppingCart handleRemoveFromCart={handleRemoveFromCart}/>}/>
         <Route path="/checkout" element={<CheckoutDetails />} />
         <Route path="/order-complete" element={<OrderComplete />} />
         <Route path="/product-upload" element={<ProductUpload />} />
+        <Route path="/product-upload" element={<ProductUpload />} />
+        <Route path="/SubmitProduct" element={<SubmitProduct />} />
       </Routes>
         
       <ToastContainer
