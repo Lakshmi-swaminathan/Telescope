@@ -8,11 +8,14 @@ import orderRoutes from './routes/orderRoutes.mjs';
 import userRoutes from './routes/userRoutes.mjs';
 import Product from './models/Product.mjs';
 import Order from './models/Order.mjs';
-
+import stripePackage from 'stripe';
 
   
 dotenv.config();
 const app = express();
+// Initialize Stripe with the secret key from the environment variables
+const stripe = stripePackage('sk_test_51OKEa1CG31fCZTbG2EqV3PlPwFIaTajHisE6iWcwgpOSeovunwn44U3Qtl8WavoSs9P0KxTdNetKBFejxQuQrZFd00ZwjpnAB2');
+
 const PORT = process.env.PORT || 5000;
 
 // MongoDB Connection

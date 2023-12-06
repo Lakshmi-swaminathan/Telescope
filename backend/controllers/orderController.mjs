@@ -42,7 +42,7 @@ const placeOrder = async (req, res) => {
 
     // Clear the cart after placing the order
     await CartItem.deleteMany();
-
+    console.log('place order '+order.data);
     res.json(order);
   } catch (error) {
     console.error(error);

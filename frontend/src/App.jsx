@@ -29,6 +29,7 @@ import CheckoutDetails from './components/CheckoutDetails.jsx';
 import OrderComplete from './components/OrderComplete.jsx';
 import { toast } from 'react-toastify'; 
 import ProductUpload from "./components/ProductUpload";
+import CheckoutDetailsParent from "./components/CheckoutDetailsParent";
 
 
 const App = () => {
@@ -87,7 +88,7 @@ const App = () => {
         <Route path="/sign-up" element={<SignupPage />} />
         <Route path="/Shop" element={<ShopMainPage />} />
         <Route path="/cart" element={<ShoppingCart handleRemoveFromCart={handleRemoveFromCart}/>}/>
-        <Route path="/checkout" element={<CheckoutDetails />} />
+        <Route path="/checkout" element={<CheckoutDetailsParent />} />
         <Route path="/order-complete" element={<OrderComplete />} />
         <Route path="/product-upload" element={<ProductUpload />} />
         <Route path="/product-upload" element={<ProductUpload />} />
