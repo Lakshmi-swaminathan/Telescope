@@ -11,7 +11,7 @@ export default function LoginForm() {
   const [error, setError] = useState('');
   const navigate=useNavigate();
 
-  cconst handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
   
     try {
