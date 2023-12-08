@@ -15,7 +15,7 @@ export default function LoginForm() {
     event.preventDefault();
   
     try {
-      const response = await axios.post(
+      await axios.post(
         'http://localhost:8080/user/login-user',
         {
           email,
