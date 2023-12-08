@@ -1,0 +1,101 @@
+.checkout-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f6f6f6;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  animation: slideInLeft 0.8s ease-in-out;
+}
+
+h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #555;
+  animation: slideInLeft 0.8s ease-in-out;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+  border-color: #3498db;
+}
+
+button[type="submit"] {
+  padding: 15px 30px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3498db;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation: pulse 1.5s infinite;
+}
+
+button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  animation: slideInLeft 0.8s ease-in-out;
+}
+
+li:hover {
+  color: #333;
+}
+
+/* Add more animations and effects as needed */

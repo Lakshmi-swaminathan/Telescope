@@ -1,0 +1,7 @@
+.footer {
+    background: linear-gradient(to right, #000000, rgb(111, 124, 124));
+    color: #ffffff;
+    padding: 20px; 
+    text-align: center; 
+    margin-top: auto;
+  }

@@ -1,0 +1,53 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tele-logo{
+    width: 25%;
+   
+}
+
+.product-upload-button{
+    margin-left: auto;
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+    color: white;
+    border-radius: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    margin-right: 5%;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.product-upload-button:hover {
+    /* Add a box shadow and scale slightly on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Slightly larger size */
+  }
+
+
+.icon-Upload{
+    display: flex;
+}
+
+
+.icons{
+    display: flex;
+    /* margin-right:8%; */
+    gap:40px;
+    justify-content: center;
+    align-items: center;
+    padding-top:3%;
+    padding-bottom: 3%;
+    background-color: rgb(111, 124, 124);
+    display: flex;
+    /* rgb(111, 124, 124); */
+}
+.icons :hover {
+    transform: scale(1.1); /* Increase size on hover */
+    transition: transform 0.2s ease; /* Add a smooth transition */
+  }
