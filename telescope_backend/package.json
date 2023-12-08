@@ -8,9 +8,10 @@
   },
   "scripts": {
     "dev": "nodemon app.mjs",
-    "start": "node app.mjs"
+    "start": "node app.mjs",
+    "build": "npm i"
   }, 
-  "author": "Jahnavi",
+  "author": "Lakshmi",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
