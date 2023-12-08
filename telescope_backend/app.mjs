@@ -34,7 +34,10 @@ app.use(express.json());
 //   origin: 'http://localhost:3000',
 //   credentials: true,
 // }));
-app.use(cors());
+app.use(cors({
+  origin: 'https://main--stellular-frangollo-39676b.netlify.app',
+  credentials: true,
+}));
 // Routes
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
