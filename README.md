@@ -13,5 +13,6 @@ This project gives the ability to sell/buy products
 <li>Product listing in home page</li>
 <li>Add to cart and remove from cart functionality</li>
 <li>Product checkout</li>
+<li>Order creation</li>
 <li>Order confirmation</li>
 </ul>
