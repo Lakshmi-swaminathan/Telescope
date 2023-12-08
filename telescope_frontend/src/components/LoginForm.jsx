@@ -11,23 +11,23 @@ export default function LoginForm() {
   const [error, setError] = useState('');
   const navigate=useNavigate();
 
-  const handleSubmit = async (event) => {
+  cconst handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
-      await axios.post(
-        'https://telescope-0jle.onrender.com/user/login-user',
+      const response = await axios.post(
+        'http://localhost:8080/user/login-user',
         {
           email,
           password,
         },
         { withCredentials: true }
       );
-
+  
       alert('Login successful!');
-      navigate('/homepage');
+      navigate('/home-page');
     } catch (err) {
-      setError("Unexpected response format");
+      setError(err.response.data.message || 'An error occurred'); // Set a default message if the response data does not contain a message
     }
   };
 
