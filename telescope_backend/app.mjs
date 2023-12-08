@@ -30,10 +30,11 @@ db.once('open', () => {
 // Middleware
 app.use(express.json());
 // Use CORS middleware
-app.use(cors({ 
-  origin: 'http://localhost:3000',
-  credentials: true,
-}));
+// app.use(cors({ 
+//   origin: 'http://localhost:3000',
+//   credentials: true,
+// }));
+app.use(cors());
 // Routes
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
