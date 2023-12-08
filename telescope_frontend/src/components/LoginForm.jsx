@@ -25,8 +25,8 @@ export default function LoginForm() {
       );
   
       alert('Login successful!');
-      navigate('/home-page');
-    } catch (err) {
+      navigate('/homepage');
+    } catch (err) { 
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
       } else {
