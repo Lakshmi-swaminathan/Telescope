@@ -15,7 +15,7 @@ const ShoppingCart = ({ handleRemoveFromCart }) => {
 
   const fetchCart = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/cart/getCart');
+      const response = await axios.get('https://telescope-0jle.onrender.com/api/cart/getCart');
       setCart(response.data);
     } catch (error) {
       console.error('Error fetching cart:', error);
@@ -24,7 +24,7 @@ const ShoppingCart = ({ handleRemoveFromCart }) => {
 
   const handleRemoveFromCart1 = async (productId) => {
     try {
-      const response = await axios.delete(`http://127.0.0.1:8080/api/cart/remove-from-cart/${productId}`);
+      const response = await axios.delete(`https://telescope-0jle.onrender.com/api/cart/remove-from-cart/${productId}`);
       console.log('remove-from-cart ', response.data);
       fetchCart();
       toast.success('Cart item deleted successfully');

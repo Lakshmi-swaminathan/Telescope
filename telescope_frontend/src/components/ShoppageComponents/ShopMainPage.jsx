@@ -16,7 +16,7 @@ export default function ShopMainPage() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8080/api/products');
+      const response = await axios.get('https://telescope-0jle.onrender.com/api/products');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);

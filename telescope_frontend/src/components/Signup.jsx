@@ -17,7 +17,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/user/create-user', {
+      const response = await axios.post('https://telescope-0jle.onrender.com/user/create-user', {
         name,
         email,
         password,

@@ -52,7 +52,7 @@ const CheckoutDetails = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8080/api/cart/getCart');
+        const response = await axios.get('https://telescope-0jle.onrender.com/api/cart/getCart');
         setCart(response.data);
       } catch (error) {
         console.error(error);
@@ -152,7 +152,7 @@ const CheckoutDetails = () => {
       };
   
       const orderResponse = await axios.post(
-        'http://127.0.0.1:8080/api/orders/place-order',
+        'https://telescope-0jle.onrender.com/api/orders/place-order',
         orderData
       );
   

@@ -63,7 +63,7 @@ export default function ProductUpload() {
     console.log('imageLink '+imageLink);
     setformdata((prevData) => ({ ...prevData, image: imageLink }));
 
-    axios.post('http://127.0.0.1:8080/api/add-product', {
+    axios.post('https://telescope-0jle.onrender.com/api/add-product', {
       name: formdata.productname,
       description: formdata.productdescription,
       price: formdata.productcost,

@@ -14,16 +14,16 @@ const OrderComplete = ({ orderId }) => {
     const fetchOrderDetails = async () => {
       try {
         // Fetch order details
-        const orderResponse = await axios.get(`http://127.0.0.1:8080/api/orders/get-orders`);
+        const orderResponse = await axios.get(`https://telescope-0jle.onrender.com/api/orders/get-orders`);
         setOrderDetails(orderResponse.data[0]);
 
         // Fetch product details for each productId in the order
         const productIds = orderResponse.data[0].productIds;
-        const productResponse = await axios.get('http://127.0.0.1:8080/api/products');
+        const productResponse = await axios.get('https://telescope-0jle.onrender.com/api/products');
         const filteredProducts = productResponse.data.filter(product => productIds.includes(product._id));
         setProductDetails(filteredProducts);
         
-        const deleteProductsResponse= await axios.delete('http://127.0.0.1:8080/api/products/delete-products',{ data: { productIds: productIds },});
+        const deleteProductsResponse= await axios.delete('https://telescope-0jle.onrender.com/api/products/delete-products',{ data: { productIds: productIds },});
         console.log('deleteProductsResponse '+deleteProductsResponse);
       } catch (error) {
         console.error(error);
