@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // import logo from './logo.svg';
 import './App.css';
 import Homepage from './components/FullHomepage'
@@ -7,12 +7,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './components/navbar';
 import  ShopMainPage from "./components/ShoppageComponents/ShopMainPage" ;
 import { ShoppingCart} from './components/ShoppingCart.jsx';
-import CheckoutDetails from './components/CheckoutDetails.jsx';
 import OrderComplete from './components/OrderComplete.jsx';
 import ProductUpload from "./components/ProductUpload";
 import LoginForm from './components/LoginForm.jsx'
 import SubmitProduct from "./components/SubmitProduct";
-import SignupPage from './components/SignUpPage'
 import axios from "axios";
 import { toast } from 'react-toastify'; 
 import CustomerProfile from "./components/CustomerProfile";
@@ -22,6 +20,7 @@ import CheckoutDetailsParent from "./components/CheckoutDetailsParent";
 function App() {
   // 
   const [cart, setCart] = useState([]);
+  console.log('cart '+cart);
   const fetchCart = async () => {
     try {
       const response = await axios.get('http://localhost:8080/api/cart/getCart');

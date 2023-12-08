@@ -40,7 +40,7 @@ const OrderComplete = ({ orderId }) => {
   const renderProductDetails = () => {
     return productDetails.map(product => (
       <div key={product._id} className="product-cart">
-        <img src={product.imageUrl} alt={product.name} className="product-image" />
+        <img src={product.imageUrl} className="product-image" alt={product.name}/>
         <div className="product-info">
           <h3>{product.name}</h3>
           <p>Price: ${product.price.toFixed(2)}</p>

@@ -11,7 +11,7 @@ export default function Header(){
         
         <>
            <div className="icon-Upload">  
-                <img src={Logo} className="tele-logo"></img>
+                <img src={Logo} className="tele-logo" alt="tele-logo"></img>
                 <button className="product-upload-button" onClick={
                     ()=>{navigate('/product-upload')}}>Upload Product &gt;</button>
            </div>

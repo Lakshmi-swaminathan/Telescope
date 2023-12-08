@@ -12,7 +12,7 @@ export default function Navbar(){
     const handleClick = () => {
         navigate('/');
     };
-
+    console.log('handleClick '+handleClick);
     return(
         
         <>

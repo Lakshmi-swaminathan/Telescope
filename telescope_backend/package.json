@@ -10,7 +10,7 @@
     "dev": "nodemon app.mjs",
     "start": "node app.mjs",
     "build": "npm i"
-  }, 
+  },
   "author": "Lakshmi",
   "license": "ISC",
   "dependencies": {

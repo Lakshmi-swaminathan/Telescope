@@ -4,7 +4,7 @@ import axios from 'axios';
 import checkoutStyles from '../Style/checkoutStyles.css';
 
 import { useNavigate } from 'react-router-dom'; // Assuming you're using React Router v6
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -96,6 +96,7 @@ const CheckoutDetails = () => {
         return;
       }
   
+      console.log(' phoneNumber '+ phoneNumber);
       // const cardElement = elements.getElement(CardElement);
       // console.log(elements);
   
@@ -119,13 +120,7 @@ const CheckoutDetails = () => {
       }
         setError(null);
   
-        const billingAddress = {
-          line1: formData.billingStreetAddress,
-          postal_code: formData.billingZipCode,
-          city: formData.billingCity,
-          state: formData.billingState,
-          country: formData.billingCountry,
-        };
+        
   
       //   const { error } = stripe.validateCardBillingDetails(billingAddress);
   
