@@ -27,7 +27,11 @@ export default function LoginForm() {
       alert('Login successful!');
       navigate('/home-page');
     } catch (err) {
-      setError(err.response.data.message || 'An error occurred'); // Set a default message if the response data does not contain a message
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError('An error occurred while processing your request.');
+      }  
     }
   };
 
