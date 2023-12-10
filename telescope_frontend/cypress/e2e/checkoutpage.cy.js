@@ -32,6 +32,9 @@ describe('checkout Page', () => {
     cy.get('.Navbar').find('.ShopBag').click();
      // Intercept the API request to add products to the cart
      cy.intercept('POST', '**/api/cart/add-to-cart').as('addToCart');
+
+      // Wait for the element to exist
+    cy.get('.card-inner1').should('exist');
       // Access an element by its class
     cy.get('.card-inner1').find('.buy').first().click();
       // Click the shopping bag icon
