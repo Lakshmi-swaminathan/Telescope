@@ -1,6 +1,6 @@
 // cypress/integration/login.spec.js
 
-describe('Shop Page', () => {
+describe('Cart Page', () => {
     beforeEach(() => {
       // Visit the login page before each test
       cy.visit('/');
@@ -8,7 +8,7 @@ describe('Shop Page', () => {
   
    
   
-    it('Shop page Ui validation', () => {
+    it('Cart page Ui validation', () => {
       // Intercept the login request and force it to succeed
       cy.intercept('POST', '**/user/login-user', {
         statusCode: 200,
@@ -28,11 +28,11 @@ describe('Shop Page', () => {
       // Verify that the user is redirected to the homepage
       cy.url().should('include', '/homepage');
       // Click the shopping bag icon
-    cy.get('.Navbar').find('.ShopBag').click();
+    cy.get('.Navbar').find('.Cart').click();
 
     // Check if the URL has changed to /shop
-    cy.url().should('include', '/Shop');
-    cy.contains('Shop Page');
+    cy.url().should('include', '/cart');
+    cy.contains('Your Cart');
     });
 
    
