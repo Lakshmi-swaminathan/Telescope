@@ -25,10 +25,10 @@ export default function Navbar(){
                         () => navigate('/homepage')
                     }size="2x" />
                     
-                    <FontAwesomeIcon icon={faShoppingBag} onClick={
+                    <FontAwesomeIcon icon={faShoppingBag} className="ShopBag" onClick={
                         () => navigate('/Shop')
                     } size="2x"/>
-                    <FontAwesomeIcon icon={faShoppingCart} onClick={
+                    <FontAwesomeIcon icon={faShoppingCart} className="Cart" onClick={
                         () => navigate('/cart')
                     } size="2x"/>
                     <FontAwesomeIcon icon={faUserCircle} onClick={
