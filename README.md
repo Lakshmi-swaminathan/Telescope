@@ -16,3 +16,4 @@ This project gives the ability to sell/buy products
 <li>Order creation</li>
 <li>Order confirmation</li>
 </ul>
+MERN Stack project - “A Marketplace” - A platform where individuals can buy or sell products - https://main--stellular-frangollo-39676b.netlify.app/ 
